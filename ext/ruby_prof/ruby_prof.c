@@ -71,9 +71,29 @@ get_event_name(rb_event_flag_t event)
   return "c-return";
     case RUBY_EVENT_RAISE:
   return "raise";
+#ifdef RUBY_INTERNAL_EVENT_NEWOBJ
+    case RUBY_INTERNAL_EVENT_NEWOBJ:
+  return "new-obj";
+#endif
+#ifdef RUBY_INTERNAL_EVENT_FREEOBJ
+    case RUBY_INTERNAL_EVENT_FREEOBJ:
+  return "free-obj";
+#endif
+#ifdef RUBY_INTERNAL_EVENT_GC_START
+    case RUBY_INTERNAL_EVENT_GC_START:
+  return "gc-start";
+#endif
+#ifdef RUBY_INTERNAL_EVENT_GC_END
+    case RUBY_INTERNAL_EVENT_GC_END:
+  return "gc-end";
+#endif
 
 #ifdef RUBY_VM
+#ifdef RUBY_INTERNAL_EVENT_SWITCH
+    case RUBY_INTERNAL_EVENT_SWITCH:
+#else
     case RUBY_EVENT_SWITCH:
+#endif
   return "thread-interrupt";
 #endif
 
